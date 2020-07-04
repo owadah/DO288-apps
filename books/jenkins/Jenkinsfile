@@ -10,8 +10,8 @@ pipeline {
     }
 
     environment {
-        DEV_PROJECT = "owhrjp-books-dev"
-        STAGE_PROJECT = "owhrjp-books-stage"
+        DEV_PROJECT = "books-dev"
+        STAGE_PROJECT = "books-stage"
         APP_GIT_URL = "https://github.com/owadah/DO288-apps"
         NEXUS_SERVER = "http://nexus-common.apps.ocp-ap3.prod.nextcle.com/repository/nodejs"
 
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo '### Installing NPM dependencies ###'
                 sh '''
-                        npm config set registry ${NEXUS_SERVER}
+                        #npm config set registry ${NEXUS_SERVER}
                         cd books
                         npm install
                    '''
@@ -59,7 +59,7 @@ pipeline {
                 echo '### Creating a new app in DEV env ###'
                 sh '''
                         oc project ${DEV_PROJECT}
-                        oc new-app --name books nodejs:8~${APP_GIT_URL} --build-env npm_config_registry=${NEXUS_SERVER} --context-dir ${APP_NAME}
+                        oc new-app --name books nodejs:12~${APP_GIT_URL} --build-env npm_config_registry=${NEXUS_SERVER} --context-dir ${APP_NAME}
                         oc expose svc/${APP_NAME}
                    '''
             }
