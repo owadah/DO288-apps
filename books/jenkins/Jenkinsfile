@@ -13,7 +13,8 @@ pipeline {
         DEV_PROJECT = "books-dev"
         STAGE_PROJECT = "books-stage"
         APP_GIT_URL = "https://github.com/owadah/DO288-apps"
-        NEXUS_SERVER = "http://nexus-common.apps.ocp-ap3.prod.nextcle.com/repository/nodejs"
+        // NEXUS_SERVER = "http://nexus-nexus.router.default.svc.cluster.local/repository/nodejs"
+        NEXUS_SERVER = "https://registry.npmjs.org/"
 
         // DO NOT CHANGE THE GLOBAL VARS BELOW THIS LINE
         APP_NAME = "books"
